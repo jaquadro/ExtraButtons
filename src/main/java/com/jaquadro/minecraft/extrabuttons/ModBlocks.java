@@ -39,6 +39,20 @@ public class ModBlocks
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         registerToggleButtonBlock(event, "white_toggle_button", DyeColor.WHITE);
         registerToggleButtonBlock(event, "orange_toggle_button", DyeColor.ORANGE);
+        registerToggleButtonBlock(event, "magenta_toggle_button", DyeColor.MAGENTA);
+        registerToggleButtonBlock(event, "light_blue_toggle_button", DyeColor.LIGHT_BLUE);
+        registerToggleButtonBlock(event, "yellow_toggle_button", DyeColor.YELLOW);
+        registerToggleButtonBlock(event, "lime_toggle_button", DyeColor.LIME);
+        registerToggleButtonBlock(event, "pink_toggle_button", DyeColor.PINK);
+        registerToggleButtonBlock(event, "gray_toggle_button", DyeColor.GRAY);
+        registerToggleButtonBlock(event, "light_gray_toggle_button", DyeColor.LIGHT_GRAY);
+        registerToggleButtonBlock(event, "cyan_toggle_button", DyeColor.CYAN);
+        registerToggleButtonBlock(event, "purple_toggle_button", DyeColor.PURPLE);
+        registerToggleButtonBlock(event, "blue_toggle_button", DyeColor.BLUE);
+        registerToggleButtonBlock(event, "brown_toggle_button", DyeColor.BROWN);
+        registerToggleButtonBlock(event, "green_toggle_button", DyeColor.GREEN);
+        registerToggleButtonBlock(event, "red_toggle_button", DyeColor.RED);
+        registerToggleButtonBlock(event, "black_toggle_button", DyeColor.BLACK);
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {

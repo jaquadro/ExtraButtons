@@ -1,4 +1,18 @@
 {
+    "block.extrabuttons.black_toggle_button": "Black Illuminated Toggle Button",
+    "block.extrabuttons.blue_toggle_button": "Blue Illuminated Toggle Button",
+    "block.extrabuttons.brown_toggle_button": "Brown Illuminated Toggle Button",
+    "block.extrabuttons.cyan_toggle_button": "Cyan Illuminated Toggle Button",
+    "block.extrabuttons.gray_toggle_button": "Gray Illuminated Toggle Button",
+    "block.extrabuttons.green_toggle_button": "Green Illuminated Toggle Button",
+    "block.extrabuttons.light_blue_toggle_button": "Light Blue Illuminated Toggle Button",
+    "block.extrabuttons.light_gray_toggle_button": "Light Gray Illuminated Toggle Button",
+    "block.extrabuttons.lime_toggle_button": "Lime Illuminated Toggle Button",
+    "block.extrabuttons.magenta_toggle_button": "Magenta Illuminated Toggle Button",
+    "block.extrabuttons.orange_toggle_button": "Orange Illuminated Toggle Button",
+    "block.extrabuttons.pink_toggle_button": "Pink Illuminated Toggle Button",
+    "block.extrabuttons.purple_toggle_button": "Purple Illuminated Toggle Button",
+    "block.extrabuttons.red_toggle_button": "Red Illuminated Toggle Button",
     "block.extrabuttons.white_toggle_button": "White Illuminated Toggle Button",
-    "block.extrabuttons.orange_toggle_button": "Orange Illuminated Toggle Button"
+    "block.extrabuttons.yellow_toggle_button": "Yellow Illuminated Toggle Button"
 }
