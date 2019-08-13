@@ -1,0 +1,6 @@
+{
+    "parent": "block/button",
+    "textures": {
+        "texture": "extrabuttons:block/light_blue_illum_button_off"
+    }
+}
