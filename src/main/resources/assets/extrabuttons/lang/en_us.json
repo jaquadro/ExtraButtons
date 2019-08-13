@@ -14,5 +14,6 @@
     "block.extrabuttons.purple_toggle_button": "Purple Illuminated Toggle Button",
     "block.extrabuttons.red_toggle_button": "Red Illuminated Toggle Button",
     "block.extrabuttons.white_toggle_button": "White Illuminated Toggle Button",
-    "block.extrabuttons.yellow_toggle_button": "Yellow Illuminated Toggle Button"
+    "block.extrabuttons.yellow_toggle_button": "Yellow Illuminated Toggle Button",
+    "block.extrabuttons.capacitive_touch_block": "Capacitive Touch Block"
 }

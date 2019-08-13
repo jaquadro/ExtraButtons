@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "powered=false": { "model": "extrabuttons:block/capacitive_touch_block" },
+        "powered=true": { "model": "extrabuttons:block/capacitive_touch_block_on" }
+    }
+}

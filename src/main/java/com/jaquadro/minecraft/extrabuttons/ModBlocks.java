@@ -1,5 +1,6 @@
 package com.jaquadro.minecraft.extrabuttons;
 
+import com.jaquadro.minecraft.extrabuttons.block.CapacitiveTouchBlock;
 import com.jaquadro.minecraft.extrabuttons.block.ToggleButtonBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -32,7 +33,8 @@ public class ModBlocks
         BROWN_TOGGLE_BUTTON = null,
         GREEN_TOGGLE_BUTTON = null,
         RED_TOGGLE_BUTTON = null,
-        BLACK_TOGGLE_BUTTON = null;
+        BLACK_TOGGLE_BUTTON = null,
+        CAPACITIVE_TOUCH_BLOCK = null;
 
     public static List<Block> blockList = new ArrayList<Block>();
 
@@ -53,6 +55,8 @@ public class ModBlocks
         registerToggleButtonBlock(event, "green_toggle_button", DyeColor.GREEN);
         registerToggleButtonBlock(event, "red_toggle_button", DyeColor.RED);
         registerToggleButtonBlock(event, "black_toggle_button", DyeColor.BLACK);
+
+        registerBlock(event, "capacitive_touch_block", new CapacitiveTouchBlock(Block.Properties.create(Material.MISCELLANEOUS)));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {

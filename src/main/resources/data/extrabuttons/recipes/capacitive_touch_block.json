@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "/I/",
+        "I#I",
+        "/I/"
+    ],
+    "key": {
+        "/": { "item": "minecraft:redstone_torch" },
+        "I": { "item": "minecraft:iron_ingot" },
+        "#": { "item": "minecraft:stone" }
+    },
+    "result": { "item": "extrabuttons:capacitive_touch_block" }
+}
