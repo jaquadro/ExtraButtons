@@ -1,0 +1,6 @@
+{
+    "parent": "block/button_pressed",
+    "textures": {
+        "texture": "extrabuttons:block/cyan_illum_button_on"
+    }
+}
