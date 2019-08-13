@@ -1,6 +1,6 @@
 {
     "parent": "extrabuttons:block/toggle_button_inventory",
     "textures": {
-        "texture": "extrabuttons:block/white_illum_button_off"
+        "texture": "extrabuttons:block/orange_illum_button_off"
     }
 }

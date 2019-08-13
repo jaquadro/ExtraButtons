@@ -1,6 +1,6 @@
 {
     "parent": "block/button",
     "textures": {
-        "texture": "extrabuttons:block/illum_button_on_0"
+        "texture": "extrabuttons:block/white_illum_button_on"
     }
 }
