@@ -1,7 +1,9 @@
 package com.jaquadro.minecraft.extrabuttons;
 
 import com.jaquadro.minecraft.extrabuttons.block.CapacitiveTouchBlock;
+import com.jaquadro.minecraft.extrabuttons.block.StonePanelButtonBlock;
 import com.jaquadro.minecraft.extrabuttons.block.ToggleButtonBlock;
+import com.jaquadro.minecraft.extrabuttons.block.WoodPanelButtonBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
@@ -23,7 +25,7 @@ public class ModBlocks
         MAGENTA_TOGGLE_BUTTON = null,
         LIGHT_BLUE_TOGGLE_BUTTON = null,
         YELLOW_TOGGLE_BUTTON = null,
-        LIME__TOGGLE_BUTTON = null,
+        LIME_TOGGLE_BUTTON = null,
         PINK_TOGGLE_BUTTON = null,
         GRAY_TOGGLE_BUTTON = null,
         LIGHT_GRAY_TOGGLE_BUTTON = null,
@@ -34,7 +36,14 @@ public class ModBlocks
         GREEN_TOGGLE_BUTTON = null,
         RED_TOGGLE_BUTTON = null,
         BLACK_TOGGLE_BUTTON = null,
-        CAPACITIVE_TOUCH_BLOCK = null;
+        CAPACITIVE_TOUCH_BLOCK = null,
+        STONE_PANEL_BUTTON = null,
+        OAK_PANEL_BUTTON = null,
+        SPRUCE_PANEL_BUTTON = null,
+        BIRCH_PANEL_BUTTON = null,
+        JUNGLE_PANEL_BUTTON = null,
+        ACACIA_PANEL_BUTTON = null,
+        DARK_OAK_PANEL_BUTTON = null;
 
     public static List<Block> blockList = new ArrayList<Block>();
 
@@ -57,6 +66,14 @@ public class ModBlocks
         registerToggleButtonBlock(event, "black_toggle_button", DyeColor.BLACK);
 
         registerBlock(event, "capacitive_touch_block", new CapacitiveTouchBlock(Block.Properties.create(Material.MISCELLANEOUS)));
+        registerBlock(event, "stone_panel_button", new StonePanelButtonBlock(Block.Properties.create(Material.MISCELLANEOUS)
+            .doesNotBlockMovement().hardnessAndResistance(0.5f)));
+        registerWoodPanelButtonBlock(event, "oak_panel_button");
+        registerWoodPanelButtonBlock(event, "spruce_panel_button");
+        registerWoodPanelButtonBlock(event, "birch_panel_button");
+        registerWoodPanelButtonBlock(event, "jungle_panel_button");
+        registerWoodPanelButtonBlock(event, "acacia_panel_button");
+        registerWoodPanelButtonBlock(event, "dark_oak_panel_button");
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
@@ -68,7 +85,13 @@ public class ModBlocks
     }
 
     private static Block registerToggleButtonBlock(RegistryEvent.Register<Block> event, String name, DyeColor color) {
-        return registerBlock(event, name, new ToggleButtonBlock(color, Block.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(0.5F)));
+        return registerBlock(event, name, new ToggleButtonBlock(color, Block.Properties.create(Material.MISCELLANEOUS)
+            .doesNotBlockMovement().hardnessAndResistance(0.5F)));
+    }
+
+    private static Block registerWoodPanelButtonBlock(RegistryEvent.Register<Block> event, String name) {
+        return registerBlock(event, name, new WoodPanelButtonBlock(Block.Properties.create(Material.MISCELLANEOUS)
+            .doesNotBlockMovement().hardnessAndResistance(0.5f)));
     }
 
     private static Block registerBlock(RegistryEvent.Register<Block> event, String name, Block block) {

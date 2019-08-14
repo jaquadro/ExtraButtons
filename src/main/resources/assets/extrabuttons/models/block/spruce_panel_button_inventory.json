@@ -1,0 +1,6 @@
+{
+    "parent": "extrabuttons:block/panel_button_inventory",
+    "textures": {
+        "texture": "block/spruce_planks"
+    }
+}

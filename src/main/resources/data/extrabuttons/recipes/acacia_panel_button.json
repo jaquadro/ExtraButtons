@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XX"
+    ],
+    "key": {
+        "X": { "item": "minecraft:acacia_button" }
+    },
+    "result": { "item": "extrabuttons:acacia_panel_button" }
+}

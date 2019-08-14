@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XX"
+    ],
+    "key": {
+        "X": { "item": "minecraft:birch_button" }
+    },
+    "result": { "item": "extrabuttons:birch_panel_button" }
+}

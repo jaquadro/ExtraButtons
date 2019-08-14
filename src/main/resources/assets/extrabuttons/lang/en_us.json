@@ -15,5 +15,12 @@
     "block.extrabuttons.red_toggle_button": "Red Illuminated Toggle Button",
     "block.extrabuttons.white_toggle_button": "White Illuminated Toggle Button",
     "block.extrabuttons.yellow_toggle_button": "Yellow Illuminated Toggle Button",
-    "block.extrabuttons.capacitive_touch_block": "Capacitive Touch Block"
+    "block.extrabuttons.capacitive_touch_block": "Capacitive Touch Block",
+    "block.extrabuttons.stone_panel_button": "Stone Panel Button",
+    "block.extrabuttons.oak_panel_button": "Oak Panel Button",
+    "block.extrabuttons.spruce_panel_button": "Spruce Panel Button",
+    "block.extrabuttons.birch_panel_button": "Birch Panel Button",
+    "block.extrabuttons.jungle_panel_button": "Jungle Panel Button",
+    "block.extrabuttons.acacia_panel_button": "Acacia Panel Button",
+    "block.extrabuttons.dark_oak_panel_button": "Dark Oak Panel Button"
 }

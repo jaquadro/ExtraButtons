@@ -1,0 +1,6 @@
+{
+    "parent": "extrabuttons:block/panel_button_pressed",
+    "textures": {
+        "texture": "block/spruce_planks"
+    }
+}
