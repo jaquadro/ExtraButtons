@@ -1,6 +1,7 @@
 {
     "replace": false,
     "values": [
-        "extrabuttons:entity_detector_rail"
+        "extrabuttons:entity_detector_rail",
+        "extrabuttons:entity_powered_rail"
     ]
 }

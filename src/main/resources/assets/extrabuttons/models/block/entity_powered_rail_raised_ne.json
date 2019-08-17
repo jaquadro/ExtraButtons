@@ -1,0 +1,6 @@
+{
+    "parent": "block/template_rail_raised_ne",
+    "textures": {
+        "rail": "extrabuttons:block/entity_powered_rail"
+    }
+}

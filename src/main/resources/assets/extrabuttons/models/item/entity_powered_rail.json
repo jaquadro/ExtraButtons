@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "extrabuttons:block/entity_powered_rail"
+    }
+}

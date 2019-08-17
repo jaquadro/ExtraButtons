@@ -78,6 +78,8 @@ public class ModBlocks
         registerBlock(event, "delay_button", new DelayButtonBlock(Block.Properties.create(Material.MISCELLANEOUS)));
         registerTransportBlock(event, "entity_detector_rail", new EntityDetectorRailBlock(Block.Properties.create(Material.MISCELLANEOUS)
             .doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL)));
+        registerTransportBlock(event, "entity_powered_rail", new EntityPoweredRailBlock(Block.Properties.create(Material.MISCELLANEOUS)
+            .doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL)));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {

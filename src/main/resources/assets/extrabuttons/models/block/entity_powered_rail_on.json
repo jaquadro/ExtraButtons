@@ -1,0 +1,6 @@
+{
+    "parent": "block/rail_flat",
+    "textures": {
+        "rail": "extrabuttons:block/entity_powered_rail_on"
+    }
+}
