@@ -1,0 +1,8 @@
+{
+    "parent": "extrabuttons:block/delay_button",
+    "textures": {
+        "texture": "extrabuttons:block/delay_button_0",
+        "back": "extrabuttons:block/delay_button_back",
+        "button": "extrabuttons:block/delay_button_button"
+    }
+}

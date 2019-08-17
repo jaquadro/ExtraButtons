@@ -22,5 +22,6 @@
     "block.extrabuttons.birch_panel_button": "Birch Panel Button",
     "block.extrabuttons.jungle_panel_button": "Jungle Panel Button",
     "block.extrabuttons.acacia_panel_button": "Acacia Panel Button",
-    "block.extrabuttons.dark_oak_panel_button": "Dark Oak Panel Button"
+    "block.extrabuttons.dark_oak_panel_button": "Dark Oak Panel Button",
+    "block.extrabuttons.delay_button": "Delay Button"
 }

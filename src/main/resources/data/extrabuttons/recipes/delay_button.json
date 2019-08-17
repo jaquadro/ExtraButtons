@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "X",
+        "Y"
+    ],
+    "key": {
+        "X": { "item": "minecraft:stone_button" },
+        "Y": { "item": "minecraft:repeater" }
+    },
+    "result": { "item": "extrabuttons:delay_button" }
+}

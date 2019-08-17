@@ -1,9 +1,6 @@
 package com.jaquadro.minecraft.extrabuttons;
 
-import com.jaquadro.minecraft.extrabuttons.block.CapacitiveTouchBlock;
-import com.jaquadro.minecraft.extrabuttons.block.StonePanelButtonBlock;
-import com.jaquadro.minecraft.extrabuttons.block.ToggleButtonBlock;
-import com.jaquadro.minecraft.extrabuttons.block.WoodPanelButtonBlock;
+import com.jaquadro.minecraft.extrabuttons.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
@@ -43,7 +40,8 @@ public class ModBlocks
         BIRCH_PANEL_BUTTON = null,
         JUNGLE_PANEL_BUTTON = null,
         ACACIA_PANEL_BUTTON = null,
-        DARK_OAK_PANEL_BUTTON = null;
+        DARK_OAK_PANEL_BUTTON = null,
+        DELAY_BUTTON_BLOCK = null;
 
     public static List<Block> blockList = new ArrayList<Block>();
 
@@ -74,6 +72,7 @@ public class ModBlocks
         registerWoodPanelButtonBlock(event, "jungle_panel_button");
         registerWoodPanelButtonBlock(event, "acacia_panel_button");
         registerWoodPanelButtonBlock(event, "dark_oak_panel_button");
+        registerBlock(event, "delay_button", new DelayButtonBlock(Block.Properties.create(Material.MISCELLANEOUS)));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
