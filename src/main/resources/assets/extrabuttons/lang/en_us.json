@@ -23,5 +23,6 @@
     "block.extrabuttons.jungle_panel_button": "Jungle Panel Button",
     "block.extrabuttons.acacia_panel_button": "Acacia Panel Button",
     "block.extrabuttons.dark_oak_panel_button": "Dark Oak Panel Button",
-    "block.extrabuttons.delay_button": "Delay Button"
+    "block.extrabuttons.delay_button": "Delay Button",
+    "block.extrabuttons.entity_detector_rail": "Entity Detector Rail"
 }

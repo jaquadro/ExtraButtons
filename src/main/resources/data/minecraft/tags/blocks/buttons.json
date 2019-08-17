@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [
+        "extrabuttons:black_toggle_button",
+        "extrabuttons:blue_toggle_button",
+        "extrabuttons:brown_toggle_button",
+        "extrabuttons:cyan_toggle_button",
+        "extrabuttons:gray_toggle_button",
+        "extrabuttons:green_toggle_button",
+        "extrabuttons:light_blue_toggle_button",
+        "extrabuttons:light_gray_toggle_button",
+        "extrabuttons:lime_toggle_button",
+        "extrabuttons:magenta_toggle_button",
+        "extrabuttons:orange_toggle_button",
+        "extrabuttons:pink_toggle_button",
+        "extrabuttons:purple_toggle_button",
+        "extrabuttons:red_toggle_button",
+        "extrabuttons:white_toggle_button",
+        "extrabuttons:yellow_toggle_button"
+    ]
+}

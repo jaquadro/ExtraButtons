@@ -2,6 +2,7 @@ package com.jaquadro.minecraft.extrabuttons;
 
 import com.jaquadro.minecraft.extrabuttons.block.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
@@ -41,9 +42,11 @@ public class ModBlocks
         JUNGLE_PANEL_BUTTON = null,
         ACACIA_PANEL_BUTTON = null,
         DARK_OAK_PANEL_BUTTON = null,
-        DELAY_BUTTON_BLOCK = null;
+        DELAY_BUTTON_BLOCK = null,
+        ENTITY_DETECTOR_RAIL = null;
 
     public static List<Block> blockList = new ArrayList<Block>();
+    public static List<Block> transportBlocks = new ArrayList<>();
 
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         registerToggleButtonBlock(event, "white_toggle_button", DyeColor.WHITE);
@@ -73,11 +76,19 @@ public class ModBlocks
         registerWoodPanelButtonBlock(event, "acacia_panel_button");
         registerWoodPanelButtonBlock(event, "dark_oak_panel_button");
         registerBlock(event, "delay_button", new DelayButtonBlock(Block.Properties.create(Material.MISCELLANEOUS)));
+        registerTransportBlock(event, "entity_detector_rail", new EntityDetectorRailBlock(Block.Properties.create(Material.MISCELLANEOUS)
+            .doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL)));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
         for (Block block : blockList) {
             BlockItem itemBlock = new BlockItem(block, new Item.Properties().group(ItemGroup.REDSTONE));
+            itemBlock.setRegistryName(block.getRegistryName());
+            event.getRegistry().register(itemBlock);
+        }
+
+        for (Block block : transportBlocks) {
+            BlockItem itemBlock = new BlockItem(block, new Item.Properties().group(ItemGroup.TRANSPORTATION));
             itemBlock.setRegistryName(block.getRegistryName());
             event.getRegistry().register(itemBlock);
         }
@@ -93,10 +104,18 @@ public class ModBlocks
             .doesNotBlockMovement().hardnessAndResistance(0.5f)));
     }
 
+    private static Block registerTransportBlock(RegistryEvent.Register<Block> event, String name, Block block) {
+        return registerBlock(event, name, block, transportBlocks);
+    }
+
     private static Block registerBlock(RegistryEvent.Register<Block> event, String name, Block block) {
+        return registerBlock(event, name, block, blockList);
+    }
+
+    private static Block registerBlock(RegistryEvent.Register<Block> event, String name, Block block, List<Block> group) {
         block.setRegistryName(name);
         event.getRegistry().register(block);
-        blockList.add(block);
+        group.add(block);
 
         return block;
     }

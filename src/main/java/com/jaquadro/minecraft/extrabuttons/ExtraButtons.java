@@ -2,6 +2,7 @@ package com.jaquadro.minecraft.extrabuttons;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.tags.Tag;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
