@@ -18,6 +18,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -75,11 +76,11 @@ public class DelayButtonBlock extends HorizontalFaceBlock
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (state.get(POWERED)) {
-            return true;
+            return ActionResultType.CONSUME;
         } else {
-            if (player.isSneaking()) {
+            if (player.isShiftKeyDown()) {
                 State next = state.get(PROGRAMMED).cycle();
                 worldIn.setBlockState(pos, state.with(STATE, next).with(PROGRAMMED, next), 3);
             } else {
@@ -89,12 +90,12 @@ public class DelayButtonBlock extends HorizontalFaceBlock
 
             this.updateNeighbors(state, worldIn, pos);
             worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
-            return true;
+            return ActionResultType.SUCCESS;
         }
     }
 
     @Override
-    public void tick (BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick (BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (!worldIn.isRemote) {
             if (!state.get(POWERED)) {
                 worldIn.setBlockState(pos, state.with(STATE, State.S0), 3);

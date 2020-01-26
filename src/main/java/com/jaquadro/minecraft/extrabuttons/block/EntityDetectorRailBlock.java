@@ -6,6 +6,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.minecart.AbstractMinecartEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
+import org.apache.logging.log4j.core.jmx.Server;
 
 import java.util.List;
 import java.util.Random;
@@ -27,7 +29,7 @@ public class EntityDetectorRailBlock extends DetectorRailBlock
     }
 
     @Override
-    public void tick(BlockState state, World worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
         if (!worldIn.isRemote && state.get(POWERED)) {
             this.updatePoweredState(worldIn, pos, state);
         }
@@ -58,7 +60,7 @@ public class EntityDetectorRailBlock extends DetectorRailBlock
             this.updateConnectedRails(worldIn, pos, blockstate, true);
             worldIn.notifyNeighborsOfStateChange(pos, this);
             worldIn.notifyNeighborsOfStateChange(pos.down(), this);
-            worldIn.func_225319_b(pos, state, blockstate);
+            worldIn.markBlockRangeForRenderUpdate(pos, state, blockstate);
         }
 
         if (!isValidTarget && powered) {
@@ -67,7 +69,7 @@ public class EntityDetectorRailBlock extends DetectorRailBlock
             this.updateConnectedRails(worldIn, pos, blockstate1, false);
             worldIn.notifyNeighborsOfStateChange(pos, this);
             worldIn.notifyNeighborsOfStateChange(pos.down(), this);
-            worldIn.func_225319_b(pos, state, blockstate1);
+            worldIn.markBlockRangeForRenderUpdate(pos, state, blockstate1);
         }
 
         if (isValidTarget) {

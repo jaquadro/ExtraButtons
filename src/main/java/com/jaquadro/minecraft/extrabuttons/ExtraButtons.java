@@ -6,6 +6,7 @@ import net.minecraft.tags.Tag;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,6 +32,11 @@ public class ExtraButtons
         @SubscribeEvent
         public static void registerItems (RegistryEvent.Register<Item> event) {
             ModBlocks.registerBlockItems(event);
+        }
+
+        @SubscribeEvent
+        public static void clientSetup (FMLClientSetupEvent event) {
+            ModBlocks.setupRenderTypes();
         }
     }
 }

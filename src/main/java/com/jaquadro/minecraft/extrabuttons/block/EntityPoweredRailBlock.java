@@ -26,7 +26,7 @@ public class EntityPoweredRailBlock extends PoweredRailBlock
         RailShape railshape = getRailDirection(state, world, pos, cart);
 
         Vec3d motion = cart.getMotion();
-        double speed = Math.sqrt(cart.func_213296_b(motion));
+        double speed = Math.sqrt(AbstractMinecartEntity.horizontalMag(motion));
         if (speed > 0.01D) {
             cart.setMotion(motion.add(motion.x / speed * 0.06D, 0.0D, motion.z / speed * 0.06D));
         } else {

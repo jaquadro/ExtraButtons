@@ -4,6 +4,8 @@ import com.jaquadro.minecraft.extrabuttons.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
@@ -43,7 +45,8 @@ public class ModBlocks
         ACACIA_PANEL_BUTTON = null,
         DARK_OAK_PANEL_BUTTON = null,
         DELAY_BUTTON_BLOCK = null,
-        ENTITY_DETECTOR_RAIL = null;
+        ENTITY_DETECTOR_RAIL = null,
+        ENTITY_POWERED_RAIL = null;
 
     public static List<Block> blockList = new ArrayList<Block>();
     public static List<Block> transportBlocks = new ArrayList<>();
@@ -94,6 +97,11 @@ public class ModBlocks
             itemBlock.setRegistryName(block.getRegistryName());
             event.getRegistry().register(itemBlock);
         }
+    }
+
+    public static void setupRenderTypes() {
+        RenderTypeLookup.setRenderLayer(ENTITY_DETECTOR_RAIL, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(ENTITY_POWERED_RAIL, RenderType.cutoutMipped());
     }
 
     private static Block registerToggleButtonBlock(RegistryEvent.Register<Block> event, String name, DyeColor color) {
