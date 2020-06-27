@@ -38,11 +38,6 @@ public class ToggleButtonBlock extends AbstractButtonBlock
     }
 
     @Override
-    public int tickRate (IWorldReader worldIn) {
-        return 5;
-    }
-
-    @Override
     public VoxelShape getShape (BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
         return super.getShape(state.with(POWERED, state.get(TRIGGERED)), worldIn, pos, context);
     }
@@ -55,7 +50,7 @@ public class ToggleButtonBlock extends AbstractButtonBlock
 
         worldIn.setBlockState(pos, state.with(TRIGGERED, true), 3);
         this.playSound(player, worldIn, pos, true);
-        worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+        worldIn.getPendingBlockTicks().scheduleTick(pos, this, 5);
 
         return ActionResultType.SUCCESS;
     }

@@ -100,8 +100,8 @@ public class ModBlocks
     }
 
     public static void setupRenderTypes() {
-        RenderTypeLookup.setRenderLayer(ENTITY_DETECTOR_RAIL, RenderType.cutoutMipped());
-        RenderTypeLookup.setRenderLayer(ENTITY_POWERED_RAIL, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(ENTITY_DETECTOR_RAIL, RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(ENTITY_POWERED_RAIL, RenderType.getCutoutMipped());
     }
 
     private static Block registerToggleButtonBlock(RegistryEvent.Register<Block> event, String name, DyeColor color) {

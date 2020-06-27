@@ -73,7 +73,7 @@ public class EntityDetectorRailBlock extends DetectorRailBlock
         }
 
         if (isValidTarget) {
-            worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+            worldIn.getPendingBlockTicks().scheduleTick(pos, this, 20);
         }
 
         worldIn.updateComparatorOutputLevel(pos, this);

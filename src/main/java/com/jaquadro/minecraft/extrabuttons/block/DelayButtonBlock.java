@@ -36,6 +36,8 @@ public class DelayButtonBlock extends HorizontalFaceBlock
     protected static final VoxelShape AABB_UP = Block.makeCuboidShape(4.0D, 15.0D, 4.0D, 12.0D, 16.0D, 12.0D);
     protected static final VoxelShape AABB_DOWN = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 1.0D, 12.0D);
 
+    private int tickRate = 20;
+
     public DelayButtonBlock(Block.Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState()
@@ -71,16 +73,11 @@ public class DelayButtonBlock extends HorizontalFaceBlock
     }
 
     @Override
-    public int tickRate (IWorldReader worldIn) {
-        return 20;
-    }
-
-    @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
         if (state.get(POWERED)) {
             return ActionResultType.CONSUME;
         } else {
-            if (player.isShiftKeyDown()) {
+            if (player.isSneaking()) {
                 State next = state.get(PROGRAMMED).cycle();
                 worldIn.setBlockState(pos, state.with(STATE, next).with(PROGRAMMED, next), 3);
             } else {
@@ -89,7 +86,7 @@ public class DelayButtonBlock extends HorizontalFaceBlock
             }
 
             this.updateNeighbors(state, worldIn, pos);
-            worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+            worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate);
             return ActionResultType.SUCCESS;
         }
     }
@@ -105,7 +102,7 @@ public class DelayButtonBlock extends HorizontalFaceBlock
             State remaining = state.get(STATE);
             if (remaining != State.S0) {
                 worldIn.setBlockState(pos, state.with(STATE, remaining.reduce()), 3);
-                worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+                worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate);
             } else {
                 worldIn.setBlockState(pos, state.with(POWERED, false), 3);
                 this.updateNeighbors(state, worldIn, pos);
@@ -172,7 +169,7 @@ public class DelayButtonBlock extends HorizontalFaceBlock
         }
 
         @Override
-        public String getName() {
+        public String func_176610_l() {
             return this.name;
         }
 

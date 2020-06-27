@@ -21,15 +21,11 @@ import java.util.Random;
 public class CapacitiveTouchBlock extends Block
 {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    private int tickRate = 20;
 
     public CapacitiveTouchBlock (Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(POWERED,false));
-    }
-
-    @Override
-    public int tickRate (IWorldReader worldIn) {
-        return 20;
     }
 
     @Override
@@ -39,7 +35,7 @@ public class CapacitiveTouchBlock extends Block
         } else {
             worldIn.setBlockState(pos, state.with(POWERED, true), 3);
             updateNeighbors(worldIn, pos);
-            worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate(worldIn));
+            worldIn.getPendingBlockTicks().scheduleTick(pos, this, this.tickRate);
             return ActionResultType.SUCCESS;
         }
     }
