@@ -1,27 +1,32 @@
 package com.jaquadro.minecraft.extrabuttons.block;
 
-import net.minecraft.block.AbstractButtonBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.DyeColor;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.AttachFace;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Random;
 
-public class ToggleButtonBlock extends AbstractButtonBlock
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
+
+public class ToggleButtonBlock extends ButtonBlock
 {
     public static final BooleanProperty TRIGGERED = BlockStateProperties.TRIGGERED;
 
@@ -29,53 +34,53 @@ public class ToggleButtonBlock extends AbstractButtonBlock
 
     public ToggleButtonBlock(DyeColor color, Block.Properties properties) {
         super(false, properties);
-        this.setDefaultState(this.stateContainer.getBaseState()
-            .with(HORIZONTAL_FACING, Direction.NORTH)
-            .with(POWERED, false)
-            .with(TRIGGERED, false)
-            .with(FACE, AttachFace.WALL));
+        this.registerDefaultState(this.stateDefinition.any()
+            .setValue(FACING, Direction.NORTH)
+            .setValue(POWERED, false)
+            .setValue(TRIGGERED, false)
+            .setValue(FACE, AttachFace.WALL));
         this.color = color;
     }
 
     @Override
-    public VoxelShape getShape (BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
-        return super.getShape(state.with(POWERED, state.get(TRIGGERED)), worldIn, pos, context);
+    public VoxelShape getShape (BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context) {
+        return super.getShape(state.setValue(POWERED, state.getValue(TRIGGERED)), worldIn, pos, context);
     }
 
     @Override
-    public ActionResultType onBlockActivated (BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (state.get(TRIGGERED)) {
-            return ActionResultType.CONSUME;
+    public InteractionResult use (BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+        if (state.getValue(TRIGGERED)) {
+            return InteractionResult.CONSUME;
         }
 
-        worldIn.setBlockState(pos, state.with(TRIGGERED, true), 3);
+        worldIn.setBlock(pos, state.setValue(TRIGGERED, true), 3);
         this.playSound(player, worldIn, pos, true);
-        worldIn.getPendingBlockTicks().scheduleTick(pos, this, 5);
+        worldIn.getBlockTicks().scheduleTick(pos, this, 5);
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public void tick (BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        if (!worldIn.isRemote) {
-            if (state.get(TRIGGERED)) {
-                worldIn.setBlockState(pos, state.with(TRIGGERED, false).with(POWERED, !state.get(POWERED)), 3);
+    public void tick (BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+        if (!worldIn.isClientSide) {
+            if (state.getValue(TRIGGERED)) {
+                worldIn.setBlock(pos, state.setValue(TRIGGERED, false).setValue(POWERED, !state.getValue(POWERED)), 3);
                 this.updateNeighbors(state, worldIn, pos);
                 this.playSound(null, worldIn, pos, false);
             }
         }
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING, POWERED, TRIGGERED, FACE);
     }
 
-    protected SoundEvent getSoundEvent(boolean pressed) {
-        return pressed ? SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON : SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF;
+    protected SoundEvent getSound(boolean pressed) {
+        return pressed ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF;
     }
 
-    private void updateNeighbors(BlockState state, World worldIn, BlockPos pos) {
-        worldIn.notifyNeighborsOfStateChange(pos, this);
-        worldIn.notifyNeighborsOfStateChange(pos.offset(getFacing(state).getOpposite()), this);
+    private void updateNeighbors(BlockState state, Level worldIn, BlockPos pos) {
+        worldIn.updateNeighborsAt(pos, this);
+        worldIn.updateNeighborsAt(pos.relative(getConnectedDirection(state).getOpposite()), this);
     }
 }

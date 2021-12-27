@@ -1,15 +1,16 @@
 package com.jaquadro.minecraft.extrabuttons;
 
 import com.jaquadro.minecraft.extrabuttons.block.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -69,49 +70,50 @@ public class ModBlocks
         registerToggleButtonBlock(event, "red_toggle_button", DyeColor.RED);
         registerToggleButtonBlock(event, "black_toggle_button", DyeColor.BLACK);
 
-        registerBlock(event, "capacitive_touch_block", new CapacitiveTouchBlock(Block.Properties.create(Material.MISCELLANEOUS)));
-        registerBlock(event, "stone_panel_button", new StonePanelButtonBlock(Block.Properties.create(Material.MISCELLANEOUS)
-            .doesNotBlockMovement().hardnessAndResistance(0.5f)));
+        registerBlock(event, "capacitive_touch_block", new CapacitiveTouchBlock(BlockBehaviour.Properties.of(Material.DECORATION)));
+        registerBlock(event, "stone_panel_button", new StonePanelButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION)
+            .noCollission().strength(0.5f)));
         registerWoodPanelButtonBlock(event, "oak_panel_button");
         registerWoodPanelButtonBlock(event, "spruce_panel_button");
         registerWoodPanelButtonBlock(event, "birch_panel_button");
         registerWoodPanelButtonBlock(event, "jungle_panel_button");
         registerWoodPanelButtonBlock(event, "acacia_panel_button");
         registerWoodPanelButtonBlock(event, "dark_oak_panel_button");
-        registerBlock(event, "delay_button", new DelayButtonBlock(Block.Properties.create(Material.MISCELLANEOUS)));
-        registerTransportBlock(event, "entity_detector_rail", new EntityDetectorRailBlock(Block.Properties.create(Material.MISCELLANEOUS)
-            .doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL)));
-        registerTransportBlock(event, "entity_powered_rail", new EntityPoweredRailBlock(Block.Properties.create(Material.MISCELLANEOUS)
-            .doesNotBlockMovement().hardnessAndResistance(0.7F).sound(SoundType.METAL)));
+        registerBlock(event, "delay_button", new DelayButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION)));
+        registerTransportBlock(event, "entity_detector_rail", new EntityDetectorRailBlock(BlockBehaviour.Properties.of(Material.DECORATION)
+            .noCollission().strength(0.7F).sound(SoundType.METAL)));
+        registerTransportBlock(event, "entity_powered_rail", new EntityPoweredRailBlock(BlockBehaviour.Properties.of(Material.DECORATION)
+            .noCollission().strength(0.7F).sound(SoundType.METAL)));
     }
 
     public static void registerBlockItems(RegistryEvent.Register<Item> event) {
         for (Block block : blockList) {
-            BlockItem itemBlock = new BlockItem(block, new Item.Properties().group(ItemGroup.REDSTONE));
+            BlockItem itemBlock = new BlockItem(block, new Item.Properties().tab(CreativeModeTab.TAB_REDSTONE));
             itemBlock.setRegistryName(block.getRegistryName());
             event.getRegistry().register(itemBlock);
         }
 
         for (Block block : transportBlocks) {
-            BlockItem itemBlock = new BlockItem(block, new Item.Properties().group(ItemGroup.TRANSPORTATION));
+            BlockItem itemBlock = new BlockItem(block, new Item.Properties().tab(CreativeModeTab.TAB_TRANSPORTATION));
             itemBlock.setRegistryName(block.getRegistryName());
             event.getRegistry().register(itemBlock);
         }
     }
 
     public static void setupRenderTypes() {
-        RenderTypeLookup.setRenderLayer(ENTITY_DETECTOR_RAIL, RenderType.getCutoutMipped());
-        RenderTypeLookup.setRenderLayer(ENTITY_POWERED_RAIL, RenderType.getCutoutMipped());
+
+        ItemBlockRenderTypes.setRenderLayer(ENTITY_DETECTOR_RAIL, RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ENTITY_POWERED_RAIL, RenderType.cutoutMipped());
     }
 
     private static Block registerToggleButtonBlock(RegistryEvent.Register<Block> event, String name, DyeColor color) {
-        return registerBlock(event, name, new ToggleButtonBlock(color, Block.Properties.create(Material.MISCELLANEOUS)
-            .doesNotBlockMovement().hardnessAndResistance(0.5F)));
+        return registerBlock(event, name, new ToggleButtonBlock(color, BlockBehaviour.Properties.of(Material.DECORATION)
+            .noCollission().strength(0.5F)));
     }
 
     private static Block registerWoodPanelButtonBlock(RegistryEvent.Register<Block> event, String name) {
-        return registerBlock(event, name, new WoodPanelButtonBlock(Block.Properties.create(Material.MISCELLANEOUS)
-            .doesNotBlockMovement().hardnessAndResistance(0.5f)));
+        return registerBlock(event, name, new WoodPanelButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION)
+            .noCollission().strength(0.5f)));
     }
 
     private static Block registerTransportBlock(RegistryEvent.Register<Block> event, String name, Block block) {

@@ -1,8 +1,8 @@
 package com.jaquadro.minecraft.extrabuttons.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.level.block.Block;
 
 public class StonePanelButtonBlock extends PanelButtonBlock
 {
@@ -11,7 +11,7 @@ public class StonePanelButtonBlock extends PanelButtonBlock
     }
 
     @Override
-    protected SoundEvent getSoundEvent(boolean clickOn) {
-        return clickOn ? SoundEvents.BLOCK_STONE_BUTTON_CLICK_ON : SoundEvents.BLOCK_STONE_BUTTON_CLICK_OFF;
+    protected SoundEvent getSound(boolean clickOn) {
+        return clickOn ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF;
     }
 }
