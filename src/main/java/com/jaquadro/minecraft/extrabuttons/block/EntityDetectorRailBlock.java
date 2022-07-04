@@ -2,6 +2,7 @@ package com.jaquadro.minecraft.extrabuttons.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.level.Level;
@@ -10,7 +11,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 
 import java.util.List;
-import java.util.Random;
 import java.util.function.Predicate;
 
 public class EntityDetectorRailBlock extends DetectorRailBlock
@@ -29,7 +29,7 @@ public class EntityDetectorRailBlock extends DetectorRailBlock
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (!worldIn.isClientSide && state.getValue(POWERED)) {
             this.updatePoweredState(worldIn, pos, state);
         }
@@ -73,7 +73,7 @@ public class EntityDetectorRailBlock extends DetectorRailBlock
         }
 
         if (isValidTarget) {
-            worldIn.getBlockTicks().scheduleTick(pos, this, 20);
+            worldIn.scheduleTick(pos, this, 20);
         }
 
         worldIn.updateNeighbourForOutputSignal(pos, this);

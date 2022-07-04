@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -21,8 +22,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import java.util.Random;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
@@ -55,13 +54,13 @@ public class ToggleButtonBlock extends ButtonBlock
 
         worldIn.setBlock(pos, state.setValue(TRIGGERED, true), 3);
         this.playSound(player, worldIn, pos, true);
-        worldIn.getBlockTicks().scheduleTick(pos, this, 5);
+        worldIn.scheduleTick(pos, this, 5);
 
         return InteractionResult.SUCCESS;
     }
 
     @Override
-    public void tick (BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void tick (BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource p_220906_) {
         if (!worldIn.isClientSide) {
             if (state.getValue(TRIGGERED)) {
                 worldIn.setBlock(pos, state.setValue(TRIGGERED, false).setValue(POWERED, !state.getValue(POWERED)), 3);

@@ -3,6 +3,7 @@ package com.jaquadro.minecraft.extrabuttons.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -14,8 +15,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
-
-import java.util.Random;
 
 public class CapacitiveTouchBlock extends Block
 {
@@ -34,7 +33,7 @@ public class CapacitiveTouchBlock extends Block
         } else {
             worldIn.setBlock(pos, state.setValue(POWERED, true), 3);
             updateNeighbors(worldIn, pos);
-            worldIn.getBlockTicks().scheduleTick(pos, this, this.tickRate);
+            worldIn.scheduleTick(pos, this, this.tickRate);
             return InteractionResult.SUCCESS;
         }
     }
@@ -66,7 +65,7 @@ public class CapacitiveTouchBlock extends Block
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (!worldIn.isClientSide && state.getValue(POWERED)) {
             worldIn.setBlock(pos, state.setValue(POWERED, false), 3);
             updateNeighbors(worldIn, pos);

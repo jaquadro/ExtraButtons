@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -25,7 +26,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class DelayButtonBlock extends FaceAttachedHorizontalDirectionalBlock
 {
@@ -90,13 +90,13 @@ public class DelayButtonBlock extends FaceAttachedHorizontalDirectionalBlock
             }
 
             this.updateNeighbors(state, worldIn, pos);
-            worldIn.getBlockTicks().scheduleTick(pos, this, this.tickRate);
+            worldIn.scheduleTick(pos, this, this.tickRate);
             return InteractionResult.SUCCESS;
         }
     }
 
     @Override
-    public void tick (BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+    public void tick (BlockState state, ServerLevel worldIn, BlockPos pos, RandomSource random) {
         if (!worldIn.isClientSide) {
             if (!state.getValue(POWERED)) {
                 worldIn.setBlock(pos, state.setValue(STATE, State.S0), 3);
@@ -106,7 +106,7 @@ public class DelayButtonBlock extends FaceAttachedHorizontalDirectionalBlock
             State remaining = state.getValue(STATE);
             if (remaining != State.S0) {
                 worldIn.setBlock(pos, state.setValue(STATE, remaining.reduce()), 3);
-                worldIn.getBlockTicks().scheduleTick(pos, this, this.tickRate);
+                worldIn.scheduleTick(pos, this, this.tickRate);
             } else {
                 worldIn.setBlock(pos, state.setValue(POWERED, false), 3);
                 this.updateNeighbors(state, worldIn, pos);
