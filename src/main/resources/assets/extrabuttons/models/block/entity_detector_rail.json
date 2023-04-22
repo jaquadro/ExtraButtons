@@ -2,5 +2,6 @@
     "parent": "block/rail_flat",
     "textures": {
         "rail": "extrabuttons:block/entity_detector_rail"
-    }
+    },
+    "render_type": "cutout"
 }

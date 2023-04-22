@@ -1,6 +1,7 @@
 package com.jaquadro.minecraft.extrabuttons;
 
 import com.jaquadro.minecraft.extrabuttons.block.*;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -54,13 +55,13 @@ public final class ModBlocks
     }
 
     private static RegistryObject<Block> registerWoodPanelButtonBlock(String name) {
-        return BLOCK_REGISTER.register(name, () -> new WoodPanelButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION)
-            .noCollission().strength(0.5f)));
+        return BLOCK_REGISTER.register(name, () -> new PanelButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION)
+            .noCollission().strength(0.5f), 30, true, SoundEvents.WOODEN_BUTTON_CLICK_OFF,  SoundEvents.WOODEN_BUTTON_CLICK_ON));
     }
 
     private static RegistryObject<Block> registerStonePanelButtonBlock(String name) {
-        return BLOCK_REGISTER.register(name, () -> new StonePanelButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION)
-            .noCollission().strength(0.5f)));
+        return BLOCK_REGISTER.register(name, () -> new PanelButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION)
+            .noCollission().strength(0.5f), 20, false, SoundEvents.STONE_BUTTON_CLICK_OFF,  SoundEvents.STONE_BUTTON_CLICK_ON));
     }
 
     private static RegistryObject<Block> registerCapacitiveTouchBlock(String name) {

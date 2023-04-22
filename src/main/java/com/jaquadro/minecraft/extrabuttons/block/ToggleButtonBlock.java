@@ -32,7 +32,7 @@ public class ToggleButtonBlock extends ButtonBlock
     private DyeColor color;
 
     public ToggleButtonBlock(DyeColor color, Block.Properties properties) {
-        super(false, properties);
+        super(properties, 20, false, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundEvents.STONE_BUTTON_CLICK_ON);
         this.registerDefaultState(this.stateDefinition.any()
             .setValue(FACING, Direction.NORTH)
             .setValue(POWERED, false)
@@ -72,10 +72,6 @@ public class ToggleButtonBlock extends ButtonBlock
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HORIZONTAL_FACING, POWERED, TRIGGERED, FACE);
-    }
-
-    protected SoundEvent getSound(boolean pressed) {
-        return pressed ? SoundEvents.STONE_BUTTON_CLICK_ON : SoundEvents.STONE_BUTTON_CLICK_OFF;
     }
 
     private void updateNeighbors(BlockState state, Level worldIn, BlockPos pos) {

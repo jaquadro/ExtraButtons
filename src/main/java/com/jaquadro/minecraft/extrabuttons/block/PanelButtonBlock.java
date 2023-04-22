@@ -2,6 +2,7 @@ package com.jaquadro.minecraft.extrabuttons.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
@@ -9,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public abstract class PanelButtonBlock extends ButtonBlock
+public class PanelButtonBlock extends ButtonBlock
 {
     protected static final VoxelShape AABB_NORTH_OFF = Block.box(1.0D, 1.0D, 14.0D, 15.0D, 15.0D, 16.0D);
     protected static final VoxelShape AABB_SOUTH_OFF = Block.box(1.0D, 1.0D, 0.0D, 15.0D, 15.0D, 2.0D);
@@ -24,8 +25,8 @@ public abstract class PanelButtonBlock extends ButtonBlock
     protected static final VoxelShape AABB_UP_ON = Block.box(1.0D, 15.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     protected static final VoxelShape AABB_DOWN_ON = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D);
 
-    public PanelButtonBlock (boolean wooden, Block.Properties properties) {
-        super(wooden, properties);
+    public PanelButtonBlock (Block.Properties properties, int ticksToStayPressed, boolean arrowsCanPress, SoundEvent soundOff, SoundEvent soundOn) {
+        super(properties, ticksToStayPressed, arrowsCanPress, soundOff, soundOn);
         this.registerDefaultState(this.stateDefinition.any().setValue(POWERED,false));
     }
 

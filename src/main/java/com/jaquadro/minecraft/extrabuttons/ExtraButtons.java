@@ -18,5 +18,7 @@ public class ExtraButtons
 
         ModBlocks.register(bus);
         ModItems.register(bus);
+
+        bus.addListener(ModItems::creativeModeTagRegister);
     }
 }
