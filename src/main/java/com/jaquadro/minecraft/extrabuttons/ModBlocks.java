@@ -6,6 +6,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -56,12 +57,12 @@ public final class ModBlocks
 
     private static RegistryObject<Block> registerWoodPanelButtonBlock(String name) {
         return BLOCK_REGISTER.register(name, () -> new PanelButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION)
-            .noCollission().strength(0.5f), 30, true, SoundEvents.WOODEN_BUTTON_CLICK_OFF,  SoundEvents.WOODEN_BUTTON_CLICK_ON));
+            .noCollission().strength(0.5f), BlockSetType.OAK, 30, true));
     }
 
     private static RegistryObject<Block> registerStonePanelButtonBlock(String name) {
         return BLOCK_REGISTER.register(name, () -> new PanelButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION)
-            .noCollission().strength(0.5f), 20, false, SoundEvents.STONE_BUTTON_CLICK_OFF,  SoundEvents.STONE_BUTTON_CLICK_ON));
+            .noCollission().strength(0.5f), BlockSetType.STONE, 20, false));
     }
 
     private static RegistryObject<Block> registerCapacitiveTouchBlock(String name) {

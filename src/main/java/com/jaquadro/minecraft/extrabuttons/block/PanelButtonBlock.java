@@ -7,6 +7,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -25,8 +26,8 @@ public class PanelButtonBlock extends ButtonBlock
     protected static final VoxelShape AABB_UP_ON = Block.box(1.0D, 15.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     protected static final VoxelShape AABB_DOWN_ON = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D);
 
-    public PanelButtonBlock (Block.Properties properties, int ticksToStayPressed, boolean arrowsCanPress, SoundEvent soundOff, SoundEvent soundOn) {
-        super(properties, ticksToStayPressed, arrowsCanPress, soundOff, soundOn);
+    public PanelButtonBlock (Block.Properties properties, BlockSetType type, int ticksToStayPressed, boolean arrowsCanPress) {
+        super(properties, type, ticksToStayPressed, arrowsCanPress);
         this.registerDefaultState(this.stateDefinition.any().setValue(POWERED,false));
     }
 
