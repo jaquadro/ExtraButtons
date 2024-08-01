@@ -73,12 +73,12 @@ public final class ModBlocks
 
     private static DeferredHolder<Block, PanelButtonBlock> registerWoodPanelButtonBlock(String name) {
         return BLOCK_REGISTER.register(name, () -> new PanelButtonBlock(BlockBehaviour.Properties.of()
-            .noCollission().strength(0.5f).pushReaction(PushReaction.DESTROY), BlockSetType.OAK, 30, true));
+            .noCollission().strength(0.5f).pushReaction(PushReaction.DESTROY), BlockSetType.OAK, 30));
     }
 
     private static DeferredHolder<Block, PanelButtonBlock> registerStonePanelButtonBlock(String name) {
         return BLOCK_REGISTER.register(name, () -> new PanelButtonBlock(BlockBehaviour.Properties.of()
-            .noCollission().strength(0.5f).pushReaction(PushReaction.DESTROY), BlockSetType.STONE, 20, false));
+            .noCollission().strength(0.5f).pushReaction(PushReaction.DESTROY), BlockSetType.STONE, 20));
     }
 
     private static DeferredHolder<Block, CapacitiveTouchBlock> registerCapacitiveTouchBlock(String name) {

@@ -1,5 +1,6 @@
 package com.jaquadro.minecraft.extrabuttons.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -29,6 +30,8 @@ import javax.annotation.Nullable;
 
 public class DelayButtonBlock extends FaceAttachedHorizontalDirectionalBlock
 {
+    public static final MapCodec<DelayButtonBlock> CODEC = simpleCodec(DelayButtonBlock::new);
+
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
     public static final EnumProperty<State> STATE = EnumProperty.create("state", State.class);
     public static final EnumProperty<State> PROGRAMMED = EnumProperty.create("programmed", State.class);
@@ -50,6 +53,11 @@ public class DelayButtonBlock extends FaceAttachedHorizontalDirectionalBlock
             .setValue(FACE, AttachFace.WALL)
             .setValue(STATE, State.S0)
             .setValue(PROGRAMMED, State.S0));
+    }
+
+    @Override
+    protected MapCodec<? extends FaceAttachedHorizontalDirectionalBlock> codec () {
+        return CODEC;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class ToggleButtonBlock extends ButtonBlock
     private DyeColor color;
 
     public ToggleButtonBlock(DyeColor color, Block.Properties properties) {
-        super(properties, BlockSetType.STONE, 20, false);
+        super(BlockSetType.STONE, 20, properties);
         this.registerDefaultState(this.stateDefinition.any()
             .setValue(FACING, Direction.NORTH)
             .setValue(POWERED, false)

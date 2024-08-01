@@ -1,5 +1,6 @@
 package com.jaquadro.minecraft.extrabuttons.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.level.Level;
@@ -11,6 +12,8 @@ import net.minecraft.world.phys.Vec3;
 
 public class EntityPoweredRailBlock extends BaseRailBlock
 {
+    public static final MapCodec<EntityPoweredRailBlock> CODEC = simpleCodec(EntityPoweredRailBlock::new);
+
     public static final EnumProperty<RailShape> SHAPE = BlockStateProperties.RAIL_SHAPE_STRAIGHT;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
@@ -20,6 +23,11 @@ public class EntityPoweredRailBlock extends BaseRailBlock
             .setValue(SHAPE, RailShape.NORTH_SOUTH)
             .setValue(POWERED, Boolean.valueOf(false))
             .setValue(WATERLOGGED, Boolean.valueOf(false)));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseRailBlock> codec () {
+        return CODEC;
     }
 
     protected boolean findPoweredRailSignal(Level worldIn, BlockPos pos, BlockState state, boolean p_176566_4_, int p_176566_5_) {

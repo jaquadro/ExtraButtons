@@ -28,8 +28,8 @@ public class PanelButtonBlock extends ButtonBlock
 
     private final BlockSetType type;
 
-    public PanelButtonBlock (Block.Properties properties, BlockSetType type, int ticksToStayPressed, boolean arrowsCanPress) {
-        super(properties, type, ticksToStayPressed, arrowsCanPress);
+    public PanelButtonBlock (Block.Properties properties, BlockSetType type, int ticksToStayPressed) {
+        super(type, ticksToStayPressed, properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(POWERED,false));
 
         this.type = type;
