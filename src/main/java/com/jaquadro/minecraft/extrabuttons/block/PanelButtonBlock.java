@@ -26,9 +26,17 @@ public class PanelButtonBlock extends ButtonBlock
     protected static final VoxelShape AABB_UP_ON = Block.box(1.0D, 15.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     protected static final VoxelShape AABB_DOWN_ON = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D);
 
+    private final BlockSetType type;
+
     public PanelButtonBlock (Block.Properties properties, BlockSetType type, int ticksToStayPressed, boolean arrowsCanPress) {
         super(properties, type, ticksToStayPressed, arrowsCanPress);
         this.registerDefaultState(this.stateDefinition.any().setValue(POWERED,false));
+
+        this.type = type;
+    }
+
+    public BlockSetType getBlockSetType() {
+        return type;
     }
 
     @Override

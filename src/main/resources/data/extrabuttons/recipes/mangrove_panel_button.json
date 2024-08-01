@@ -1,0 +1,10 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "XX"
+    ],
+    "key": {
+        "X": { "item": "minecraft:mangrove_button" }
+    },
+    "result": { "item": "extrabuttons:mangrove_panel_button" }
+}

@@ -23,6 +23,11 @@
     "block.extrabuttons.jungle_panel_button": "Jungle Panel Button",
     "block.extrabuttons.acacia_panel_button": "Acacia Panel Button",
     "block.extrabuttons.dark_oak_panel_button": "Dark Oak Panel Button",
+    "block.extrabuttons.cherry_panel_button": "Cherry Panel Button",
+    "block.extrabuttons.bamboo_panel_button": "Bamboo Panel Button",
+    "block.extrabuttons.mangrove_panel_button": "Mangrove Panel Button",
+    "block.extrabuttons.crimson_panel_button": "Crimson Panel Button",
+    "block.extrabuttons.warped_panel_button": "Warped Panel Button",
     "block.extrabuttons.delay_button": "Delay Button",
     "block.extrabuttons.entity_detector_rail": "Entity Detector Rail",
     "block.extrabuttons.entity_powered_rail": "Entity Powered Rail"
