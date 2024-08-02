@@ -48,7 +48,7 @@ public class ToggleButtonBlock extends ButtonBlock
     }
 
     @Override
-    public InteractionResult use (BlockState state, Level worldIn, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit) {
+    public InteractionResult useWithoutItem (BlockState state, Level worldIn, BlockPos pos, Player player, BlockHitResult hit) {
         if (state.getValue(TRIGGERED)) {
             return InteractionResult.CONSUME;
         }
