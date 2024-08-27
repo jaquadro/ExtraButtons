@@ -20,3 +20,4 @@ rootProject.name = "ExtraButtons"
 include("common")
 include("forge")
 include("neoforge")
+include("fabric")

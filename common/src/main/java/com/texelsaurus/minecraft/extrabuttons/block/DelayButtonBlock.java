@@ -25,8 +25,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
-
 public class DelayButtonBlock extends FaceAttachedHorizontalDirectionalBlock
 {
     public static final MapCodec<DelayButtonBlock> CODEC = simpleCodec(DelayButtonBlock::new);
@@ -133,7 +131,7 @@ public class DelayButtonBlock extends FaceAttachedHorizontalDirectionalBlock
         }
     }
 
-    private void playSound(@Nullable Player player, Level worldIn, BlockPos pos, boolean buttonOn) {
+    private void playSound(Player player, Level worldIn, BlockPos pos, boolean buttonOn) {
         worldIn.playSound(buttonOn ? player : null, pos, this.getSoundEvent(buttonOn), SoundSource.BLOCKS, 0.3F, buttonOn ? 0.6F : 0.5F);
     }
 
