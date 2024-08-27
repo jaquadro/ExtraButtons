@@ -1,0 +1,2 @@
+- Update to Minecraft 1.21
+- Experimental multi-loader project setup
